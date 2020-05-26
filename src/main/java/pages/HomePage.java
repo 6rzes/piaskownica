@@ -10,6 +10,9 @@ public class HomePage extends PageObject {
     @FindBy(xpath="//a[text()=\"Mobile\"]")
     private WebElement mobileLink;
 
+    @FindBy(xpath="//span[@class=\"label\"][text()=\"Account\"]")
+    private WebElement accountLink;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -19,5 +22,10 @@ public class HomePage extends PageObject {
     public MobilePage clickMobileLink() {
         mobileLink.click();
         return new MobilePage(driver);
+    }
+
+    public AccountPanePage clickAccountLink() {
+        accountLink.click();
+        return new AccountPanePage(driver);
     }
 }

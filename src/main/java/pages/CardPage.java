@@ -18,6 +18,5 @@ public class CardPage extends PageObject{
     public void setQty(String quantity) {
         quantityInput.clear();
         quantityInput.sendKeys("1000");
-        System.out.println("halo");
     }
 }

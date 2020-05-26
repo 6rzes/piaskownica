@@ -1,7 +1,6 @@
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
@@ -11,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class FunctionalTest {
     protected static WebDriver driver;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDrivers\\chromedriver.exe");
         driver = new ChromeDriver();
@@ -19,13 +18,13 @@ public class FunctionalTest {
     }
 
 
-    @After
-    public void cleanUp(){
+    @AfterAll
+    public static void cleanUp(){
         driver.manage().deleteAllCookies();
     }
 
 
-    @AfterClass
+    @AfterAll
     public static void tearDown(){
         driver.close();
     }

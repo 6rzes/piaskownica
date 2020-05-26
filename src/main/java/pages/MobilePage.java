@@ -21,6 +21,9 @@ public class MobilePage extends PageObject {
     private WebElement Select;
     private Select sortBySelect = new Select(Select);
 
+    @FindBy(xpath = "//button[@title=\"Compare\"]")
+    private WebElement compare;
+
     public MobilePage(WebDriver driver) {
         super(driver);
     }
@@ -48,6 +51,25 @@ public class MobilePage extends PageObject {
         String locator = String.format("//a[@title=\"%s\"]/parent::h2/parent::div[@class=\"product-info\"]//button", itemName);
         driver.findElement(By.xpath(locator)).click();
         return new CardPage(driver);
+    }
+
+    public void addToCompareByName(String itemName) {
+        String locator = String.format("//a[@title=\"%s\"]/parent::h2/parent::div[@class=\"product-info\"]//a[@class=\"link-compare\"]", itemName);
+        driver.findElement(By.xpath(locator)).click();
+    }
+
+    public ComparePage clickCompareButton() {
+        compare.click();
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+        }
+        return new ComparePage(driver);
+    }
+
+    public MyAccountPage addToWishlistByName(String itemName) {
+        String locator = String.format("//a[@title=\"%s\"]/parent::h2/parent::div[@class=\"product-info\"]//a[@class=\"link-wishlist\"]", itemName);
+        driver.findElement(By.xpath(locator)).click();
+        return new MyAccountPage(driver);
     }
 
 }
